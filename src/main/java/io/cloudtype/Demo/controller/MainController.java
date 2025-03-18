@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import io.cloudtype.Demo.template.Template;
 
 @Controller
-@RequestMapping("/hello")
+@RequestMapping("/api")
 public class MainController {
 	
 	@GetMapping
@@ -19,7 +19,7 @@ public class MainController {
 		return "testOut";
 	}
 	
-	@PostMapping
+	@PostMapping("/hello")
 	public String getTestData(@RequestBody String requested) {
 		
 		System.out.println("testOut");
