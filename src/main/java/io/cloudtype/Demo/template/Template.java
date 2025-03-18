@@ -15,13 +15,13 @@ public class Template {
 	private static ObjectMapper mapper = new ObjectMapper();
 
 	private static Map<String, ObjectNode> templates = getTemplates();
-	private static ObjectNode template = getMainTemplate();
+	private static ObjectNode mainTemplate = getMainTemplate();
 	
 	private ObjectNode current;
 	private ArrayNode outputs;
 	
 	public Template() {
-		current = template.deepCopy();
+		current = mainTemplate.deepCopy();
 		outputs = (ArrayNode) (current.get("template").get("outputs"));
 	}
 	
@@ -61,7 +61,7 @@ public class Template {
 	}
 	
 	public String toString() {
-		return template.toString();
+		return mainTemplate.toString();
 	}
 	
 	private static ObjectNode getMainTemplate() {
