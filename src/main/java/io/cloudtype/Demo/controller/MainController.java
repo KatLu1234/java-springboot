@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import io.cloudtype.Demo.template.Template;
 
 @Controller
-@RequestMapping
+@RequestMapping("/hello")
 public class MainController {
 	
 	@GetMapping
@@ -25,7 +25,7 @@ public class MainController {
 		System.out.println("testOut");
 		
 		Template template = new Template();
-		template.simpleText("Hello world!");
+		template = template.simpleText("Hello world!");
 		
 		return template.toString();
 	}
