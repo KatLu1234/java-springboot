@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import io.cloudtype.Demo.template.Template;
 
@@ -20,6 +21,7 @@ public class MainController {
 	}
 	
 	@PostMapping("/hello")
+	@ResponseBody
 	public String getTestData(@RequestBody String requested) {
 		
 		System.out.println("testOut");
