@@ -40,11 +40,11 @@ public class Template {
 		try {
 			Map<String, ObjectNode> ret = new HashMap<>();
 			Resource[] resources = Loader.getResources("static/templates/*.json");
-			System.out.println(resources[0]);
+			//System.out.println(resources[0]);
 			
 			for (Resource resource : resources) {
 				
-				System.out.println(resource.getFilename());
+				//System.out.println(resource.getFilename());
 				if (resource.getFilename().indexOf(".json") == -1) continue;
 				String name = resource.getFilename().replace(".json", "");
 				if (name.equals("template")) continue;  
@@ -61,14 +61,14 @@ public class Template {
 	}
 	
 	public String toString() {
-		return mainTemplate.toString();
+		return current.toString();
 	}
 	
 	private static ObjectNode getMainTemplate() {
 		try {
 		Resource resource = Loader.getResource("static/templates/template.json");
 		ObjectNode object = mapper.readValue(resource.getInputStream(), ObjectNode.class);
-		System.out.println(object);
+		//System.out.println(object);
 		return object;
 		} catch(Exception e) {
 			e.printStackTrace();
