@@ -12,7 +12,7 @@ import io.cloudtype.Demo.template.Template;
 @RequestMapping("/api")
 public class MainController {
 	
-	@GetMapping
+	@GetMapping("/hello")
 	public String testData() {
 		System.out.println("TestOut");
 		System.out.println((new Template().simpleText("helloworld!")) == null);
@@ -26,6 +26,7 @@ public class MainController {
 		
 		Template template = new Template();
 		template = template.simpleText("Hello world!");
+		System.out.println(template.toString());
 		
 		return template.toString();
 	}
