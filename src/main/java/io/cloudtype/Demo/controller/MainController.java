@@ -7,18 +7,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import io.cloudtype.Demo.module.RequestManager;
 import io.cloudtype.Demo.template.Template;
 
 @Controller
 @RequestMapping("/api")
 public class MainController {
 	
-	@GetMapping("/hello")
-	public String testData() {
-		System.out.println("TestOut");
-		System.out.println((new Template().simpleText("helloworld!")) == null);
-		return "testOut";
-	}
 	
 	@PostMapping("/hello")
 	@ResponseBody
@@ -32,5 +27,20 @@ public class MainController {
 		
 		return template.toString();
 	}
+	
+	@PostMapping("/networkTest")
+	@ResponseBody
+	public String testNetwork(@RequestBody String requested) {
+		
+		try {
+			String getSource = RequestManager.getResponse("https://dormitel.korea.ac.kr/mbshome/mbs/hoyeon/index.do", null);
+			return new Template().simpleText(getSource).toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Template().simpleText("error").toString();
+		}
+	}
+	
+	
 
 }
