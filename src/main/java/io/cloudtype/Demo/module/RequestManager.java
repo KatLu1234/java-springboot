@@ -1,23 +1,26 @@
 package io.cloudtype.Demo.module;
 
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class RequestManager {
 	
 	public static String getResponse(String uri, String data) throws Exception { 
 		
-		HttpClient httpClient = HttpClient.newHttpClient();
 		
-		HttpRequest request = HttpRequest.newBuilder()
-				.uri(URI.create(uri))
-				.GET()
-				.build();
+		URL url = new URL(uri);
+		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		
-		HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-		return response.body();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+		
+		String line, response = "";
+		while ((line = reader.readLine()) != null) {
+			response += line + "\n";
+		}
+		
+		return response;
 	}
 
 }
