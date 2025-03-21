@@ -53,7 +53,7 @@ public class RequestManager {
 		reader.close();
 		connection.disconnect();
 		
-		return response;
+		return response.trim();
 	}
 	
 	
